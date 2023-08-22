@@ -12,9 +12,11 @@ function Login() {
     try {
       setLoading(true);
       const response = await axios.post("http://localhost:3001/login", {
-        Email: values.username.toLowerCase(),
-        Password: values.password,
+        email: values.username.toLowerCase(),
+        password: values.password,
+        
       });
+      console.log(values.username.toLowerCase(),values.password,"email and passworrd are coming")
       setLoading(false);
        console.log("checking values", )
       if (response.data.token) {

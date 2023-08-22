@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import { Layout, Menu, theme, Input, Card, Progress,Space, Col, Row, Statistic  } from "antd";
 import {
   DashboardOutlined,
@@ -23,9 +24,7 @@ function Dashboard() {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-  const handleLogout = () => {
-    window.location.href = "/"; 
-  };
+  ;
   const menuItems = [
     { label: "Dashboard", icon: <DashboardOutlined /> },
     { label: "Search Jobs", icon: <SearchOutlined /> },
@@ -33,7 +32,11 @@ function Dashboard() {
     { label: "Message", icon: <MessageOutlined /> },
     { label: "Statatics", icon: <BarChartOutlined /> },
     { label: "News", icon: <BellOutlined /> },
-    { label: "Logout", icon: <LogoutOutlined />, onClick: handleLogout }
+    {
+      label: "Logout",
+      icon: <LogoutOutlined />,
+      path: '/'
+    }
   ];
   const onSearch = (value) => console.log(value);
   return (
@@ -72,7 +75,7 @@ function Dashboard() {
                 className="custom-menu-item"
                 onClick={item.onClick}
               >
-                {item.label}
+                 <Link to={item.path}>{item.label}</Link>
               </Menu.Item>
             ))}
           </Menu>

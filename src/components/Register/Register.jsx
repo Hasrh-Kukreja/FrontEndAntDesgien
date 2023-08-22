@@ -1,22 +1,25 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 import { Form, Input, Button } from 'antd';
-import '../Register/Register.css'; 
-import axios from 'axios'; 
+import '../Register/Register.css';
+import axios from 'axios';
 
 const Register = () => {
+  const navigate = useNavigate(); // Get the navigate function from React Router
+
   const onFinish = async (values) => {
     try {
-        console.log("harshhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
-        const response = await axios.post('http://localhost:3001/register', values);
-      console.log('Registration successful:', response.data,"aaaaaaaaaaaaaaaaaaaaaaaaaa");
-      if(response.data){
-        window.location.href = "/";
+      const response = await axios.post('http://localhost:3001/register', values);
+      console.log('Registration successful:', response.data);
+
+      if (response.data) {
+        navigate('/'); // Redirect to the specified path
       }
     } catch (error) {
-        console.log("1111111111")
       console.error('Registration failed:', error);
     }
   };
+
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
